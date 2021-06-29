@@ -10,7 +10,7 @@ import (
 
 // シンプルな例
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	output := lib.GenerateHTML("pages/index")
+	output := lib.BuildHTML("pages/index")
 	lib.Render(w, output)
 }
 
@@ -18,7 +18,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 func UserHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
 
-	output := lib.GenerateHTML("pages/user", map[string]string{"name": name})
+	output := lib.BuildHTML("pages/user", map[string]string{"name": name})
 	lib.Render(w, output)
 }
 
@@ -28,11 +28,11 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 	b, _ := strconv.Atoi(r.URL.Query().Get("b"))
 	c := usecase.Add(a, b)
 
-	output := lib.GenerateHTML("pages/add", map[string]int{"a": a, "b": b, "c": c})
+	output := lib.BuildHTML("pages/add", map[string]int{"a": a, "b": b, "c": c})
 	lib.Render(w, output)
 }
 
 func ReadmeHandler(w http.ResponseWriter, r *http.Request) {
-	output := lib.GenerateHTML("README")
+	output := lib.BuildHTML("README")
 	lib.Render(w, output)
 }

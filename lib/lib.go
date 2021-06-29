@@ -9,7 +9,7 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-func GenerateHTML(path string, context ...interface{}) string {
+func BuildHTML(path string, context ...interface{}) string {
 	md, _ := ioutil.ReadFile(path + ".md")
 	mustacheHtml := string(blackfriday.Run(md))
 	html, _ := mustache.Render(mustacheHtml, context...)

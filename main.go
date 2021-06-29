@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -10,10 +9,7 @@ import (
 func main() {
 	r := mux.NewRouter()
 	configureRouter(r)
-
-	if err := http.ListenAndServe(":8080", r); err != nil {
-		log.Fatal(err)
-	}
+	http.ListenAndServe(":8080", r)
 }
 
 func configureRouter(r *mux.Router) {
