@@ -1,4 +1,4 @@
-package pages
+package main
 
 import (
 	"html/template"
@@ -20,9 +20,14 @@ func generateHTML(path string) string {
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	output := generateHTML("pages/index")
 	tmpl := template.Must(template.ParseFiles("template/md.html"))
-	if err := tmpl.ExecuteTemplate(w, "md", template.HTML(output)); err != nil {
+	err := tmpl.ExecuteTemplate(w, "md", template.HTML(output))
+	if err != nil {
 		InternalServerErrorPage(err, w)
 	}
+}
+
+func add(a int, b int) int {
+	return a + b
 }
 
 // パラメータを利用する例
@@ -30,11 +35,14 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 	output := generateHTML("pages/add")
 	a, _ := strconv.Atoi(r.URL.Query().Get("a"))
 	b, _ := strconv.Atoi(r.URL.Query().Get("b"))
-	c := a + b
+
+	c := add(a, b)
 
 	data, _ := mustache.Render(output, map[string]int{"a": a, "b": b, "c": c})
+
 	tmpl := template.Must(template.ParseFiles("template/md.html"))
-	if err := tmpl.ExecuteTemplate(w, "md", template.HTML(data)); err != nil {
+	err := tmpl.ExecuteTemplate(w, "md", template.HTML(data))
+	if err != nil {
 		InternalServerErrorPage(err, w)
 	}
 }
@@ -42,7 +50,8 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 func ReadmeHandler(w http.ResponseWriter, r *http.Request) {
 	output := generateHTML("README")
 	tmpl := template.Must(template.ParseFiles("template/md.html"))
-	if err := tmpl.ExecuteTemplate(w, "md", template.HTML(output)); err != nil {
+	err := tmpl.ExecuteTemplate(w, "md", template.HTML(output))
+	if err != nil {
 		InternalServerErrorPage(err, w)
 	}
 }

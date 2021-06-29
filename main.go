@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/HikaruEgashira/simple-server/pages"
 	"github.com/gorilla/mux"
 )
 
@@ -18,7 +17,7 @@ func main() {
 }
 
 func configureRouter(r *mux.Router) {
-	r.HandleFunc("/", pages.IndexHandler)
-	r.HandleFunc("/add", pages.AddHandler)
-	r.HandleFunc("/readme", pages.ReadmeHandler)
+	r.HandleFunc("/", IndexHandler)
+	r.HandleFunc("/add", AddHandler)
+	r.HandleFunc("/readme", ReadmeHandler)
 }
