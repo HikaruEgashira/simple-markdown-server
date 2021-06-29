@@ -14,6 +14,14 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	lib.Render(w, output)
 }
 
+// GET
+func UserHandler(w http.ResponseWriter, r *http.Request) {
+	name := r.URL.Query().Get("name")
+
+	output := lib.GenerateHTML("pages/user", map[string]string{"name": name})
+	lib.Render(w, output)
+}
+
 // パラメータを利用する例
 func AddHandler(w http.ResponseWriter, r *http.Request) {
 	a, _ := strconv.Atoi(r.URL.Query().Get("a"))

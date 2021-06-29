@@ -19,5 +19,6 @@ func main() {
 func configureRouter(r *mux.Router) {
 	r.HandleFunc("/", IndexHandler)
 	r.HandleFunc("/add", AddHandler)
+	r.HandleFunc("/user", UserHandler)
 	r.HandleFunc("/readme", ReadmeHandler)
 }
