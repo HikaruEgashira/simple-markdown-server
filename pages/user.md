@@ -1,5 +1,5 @@
-# User
+# Welcome
 
-Hello, {{ name }} !
+{{ text }}
 
 [home](/)
