@@ -2,21 +2,18 @@ package lib
 
 import (
 	"html/template"
+	"io"
 	"io/ioutil"
-	"net/http"
 
 	"github.com/cbroglie/mustache"
 	"github.com/russross/blackfriday"
 )
 
-func BuildHTML(path string, context ...interface{}) string {
+func Render(w io.Writer, path string, context ...interface{}) {
 	md, _ := ioutil.ReadFile(path + ".md")
 	mustacheHtml := string(blackfriday.Run(md))
 	html, _ := mustache.Render(mustacheHtml, context...)
-	return html
-}
 
-func Render(w http.ResponseWriter, data string) {
 	tmpl := template.Must(template.ParseFiles("template/md.html"))
-	tmpl.ExecuteTemplate(w, "md", template.HTML(data))
+	tmpl.ExecuteTemplate(w, "md", template.HTML(html))
 }

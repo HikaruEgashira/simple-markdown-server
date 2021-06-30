@@ -1,19 +1,13 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/HikaruEgashira/simple-server/controller"
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
-func configureRouter(r *mux.Router) {
-	r.HandleFunc("/", controller.IndexHandler)
-	r.HandleFunc("/user", controller.UserHandler)
-}
-
 func main() {
-	r := mux.NewRouter()
-	configureRouter(r)
-	http.ListenAndServe(":8080", r)
+	router := gin.Default()
+	router.GET("/", controller.IndexHandler)
+	router.GET("/user", controller.UserHandler)
+	router.Run(":8080")
 }

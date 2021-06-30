@@ -1,17 +1,15 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/HikaruEgashira/simple-server/lib"
 	"github.com/HikaruEgashira/simple-server/usecase"
+	"github.com/gin-gonic/gin"
 )
 
-func UserHandler(w http.ResponseWriter, r *http.Request) {
-	name := r.URL.Query().Get("name")
+func UserHandler(c *gin.Context) {
+	name := c.Query("name")
 
 	text := usecase.Hello(name)
 
-	output := lib.BuildHTML("pages/user", map[string]string{"text": text})
-	lib.Render(w, output)
+	lib.Render(c.Writer, "pages/user", map[string]string{"text": text})
 }

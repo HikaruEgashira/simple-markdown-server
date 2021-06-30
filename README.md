@@ -10,5 +10,5 @@ LT: サーバーサイドエンジニアのための 頑張らないWeb開発
 ## usage
 
 ```bash
-go run *.go
+air
 ```

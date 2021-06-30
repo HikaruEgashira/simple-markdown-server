@@ -1,12 +1,10 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/HikaruEgashira/simple-server/lib"
+	"github.com/gin-gonic/gin"
 )
 
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	output := lib.BuildHTML("pages/index")
-	lib.Render(w, output)
+func IndexHandler(c *gin.Context) {
+	lib.Render(c.Writer, "pages/index")
 }
