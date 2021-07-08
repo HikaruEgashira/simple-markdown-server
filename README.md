@@ -10,5 +10,6 @@ LT: サーバーサイドエンジニアのための 頑張らないWeb開発
 ## usage
 
 ```bash
+go get -u github.com/cosmtrek/air
 air
 ```
