@@ -3,7 +3,7 @@ module github.com/HikaruEgashira/simple-server
 go 1.16
 
 require (
-	github.com/cbroglie/mustache v1.2.2
+	github.com/cbroglie/mustache v1.3.0
 	github.com/fatih/color v1.12.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.7.3
